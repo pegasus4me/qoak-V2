@@ -18,6 +18,7 @@ export default function Community() {
         } catch (error : any) {
             console.error('erreur community', error)
         }
+
     }
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-20">
@@ -57,3 +58,6 @@ export default function Community() {
     </div>
   );
 }
+
+
+// le nom de la commu sera le leaf qui donne acces a l'autre page
