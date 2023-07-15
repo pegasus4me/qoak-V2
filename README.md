@@ -12,3 +12,8 @@ routage dynamique qui prend en leaf le nom de la communauté creer par l'utilisa
 
 
 middleware check si il est connecte avant d'aller sur les routes /profile , /createCommunity , /createPost et de commenter
+
+route action recuper l'user pour la communauté
+
+CHANGELOG 15/07 => connection avec la creation de communauté
+a finir => mise en relation avec les dynamic routes

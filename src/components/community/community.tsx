@@ -1,25 +1,38 @@
 "use client";
-import React,{ useState } from "react";
+import React,{ useState, useCallback} from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import axios from 'axios'
+import { useSession } from "next-auth/react";
+import axios, { AxiosResponse } from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Link from "next/link";
-
+import { Redirect } from "next";
 export default function Community() {
+    const { data: session, status } = useSession();
     const [communityName, setCommunityName]=useState<string>('')
     const [alert, setAlert] = useState<boolean>(false)
     const [checked ,setChecked] = useState<boolean>(false)
-
-
-    const onSubmit =async() => {
+ 
+    const onSubmit = useCallback(async() => {
         if(communityName === "") setAlert(true)
-        if(!checked) throw new Error('not clicked')
+        // if(!checked) throw new Error('not clicked')
         try {
-            
+            let res:AxiosResponse<any, any>  = await axios.post('/api/community/create', {
+                id: session?.user?.id as string,
+                subqoakName : communityName
+            })
+            if(res.status === 200)  {
+                toast(`${communityName} successfully created!`)
+                // redirect to slug based on community name just created
+                setTimeout(() => {
+                        Redirect(`/community/${communityName}`,) // corriger ça
+                },3000)
+            }
         } catch (error : any) {
-            console.error('erreur community', error)
+            console.log('erreur community', error)
         }
+    },[session, communityName])
 
-    }
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-20">
       <div className="bg-white rounded-lg w-[500px] h-[500px] border border-gray-200 p-3">
@@ -38,7 +51,7 @@ export default function Community() {
             placeholder="q/"
             required
             />
-            {alert && <p className="mt-1 text-red-600 text-sm font-light">A community name is required</p>}
+            {alert && <p className="mt-1 text-red-600 font-light text-xs text-center">A community name is required</p>}
         </div>
         
         <div className="flex gap-3">
@@ -55,6 +68,7 @@ export default function Community() {
             >Create Community</button>
         </div>
       </div>
+      <ToastContainer position="top-right" hideProgressBar={false} autoClose={3000} theme="light" closeOnClick/>
     </div>
   );
 }

@@ -14,13 +14,11 @@ export default function Header() {
   const [clicked, setClicked] = useState<boolean>(false);
   const [user, setUser] = useState<any>([]);
   const { data: session, status } = useSession();
-    console.log("user", user)
   useEffect(() => {
     fetch();
   }, [session]);
   const fetch = async () => {
     const res = await userInfos(session?.user?.email as string);
-    console.log('fofofo', res)
     setUser(res?.data.find_user);
   };
   return (

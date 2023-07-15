@@ -9,7 +9,6 @@ export const userInfos = async (sessionemail : string) => {
           email,
         },
       });
-      console.log("res", res)
       return res;
     } catch (error: any) {
       console.log(error);
