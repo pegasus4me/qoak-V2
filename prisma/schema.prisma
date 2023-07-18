@@ -62,6 +62,8 @@ model User {
 model Subreddit {
     id        String   @id @default(auto()) @map("_id") @db.ObjectId
     name      String
+    // description  String
+    // title String
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     posts     Post[]

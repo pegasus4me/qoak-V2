@@ -1,15 +1,27 @@
 import React from "react"
 import { FC } from "react"
-
+import Header from "@/components/community/header"
 interface PropsParams {
-    params : {name: string}
+    params : {url: string}
 }
 
 const community:FC<PropsParams> = ({params}) => {
 
+    
     return (
         <div>
-                <p>je suis sur la communauté {params.name}</p>
+                <div>
+                    <Header community={params.commuName}/>
+                    {/* banner de base */}
+                </div>
+
+                <div>
+                    {/* create post component */}
+                </div>
+
+                <div>
+                    {/* posts dans la communauté (seulement le titre + debut texte ) + upvotes component */}
+                </div>
         </div>
     )
 }

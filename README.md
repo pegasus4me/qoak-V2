@@ -17,3 +17,6 @@ route action recuper l'user pour la communauté
 
 CHANGELOG 15/07 => connection avec la creation de communauté
 a finir => mise en relation avec les dynamic routes
+
+CHANGELOG 18/7 => connection create a community
+- a faire  : composants de la communauté en question ( ilot pour add une description , = seulement le createur peut faire ça, un header et la section input create a post dans cette commu)

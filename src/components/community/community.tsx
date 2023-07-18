@@ -6,13 +6,14 @@ import axios, { AxiosResponse } from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from "next/link";
-import { Redirect } from "next";
+import { useRouter } from "next/navigation";
+
 export default function Community() {
     const { data: session, status } = useSession();
     const [communityName, setCommunityName]=useState<string>('')
     const [alert, setAlert] = useState<boolean>(false)
     const [checked ,setChecked] = useState<boolean>(false)
- 
+    const router = useRouter()
     const onSubmit = useCallback(async() => {
         if(communityName === "") setAlert(true)
         // if(!checked) throw new Error('not clicked')
@@ -23,13 +24,11 @@ export default function Community() {
             })
             if(res.status === 200)  {
                 toast(`${communityName} successfully created!`)
-                // redirect to slug based on community name just created
-                setTimeout(() => {
-                        Redirect(`/community/${communityName}`,) // corriger ça
-                },3000)
+                router.push(`/community/${communityName}`)
+              
             }
         } catch (error : any) {
-            console.log('erreur community', error)
+            console.error('erreur community', error)
         }
     },[session, communityName])
 
