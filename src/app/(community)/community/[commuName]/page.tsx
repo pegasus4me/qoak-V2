@@ -1,15 +1,24 @@
-import React from "react"
+'use client'
+import React,{useEffect, useState} from "react"
 import { FC } from "react"
 import Header from "@/components/community/header"
+import Check from "@/components/community/check"
+
 interface PropsParams {
-    params : {url: string}
+    params : 
+    {
+        url: string
+        commuName :string
+    }
 }
 
-const community:FC<PropsParams> = ({params}) => {
+const Community:FC<PropsParams> = ({params}) => {
 
-    
+   
+
     return (
         <div>
+            <Check verify={params.commuName}/>
                 <div>
                     <Header community={params.commuName}/>
                     {/* banner de base */}
@@ -26,4 +35,4 @@ const community:FC<PropsParams> = ({params}) => {
     )
 }
 
-export default community
+export default Community

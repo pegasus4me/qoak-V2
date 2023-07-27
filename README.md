@@ -20,3 +20,5 @@ a finir => mise en relation avec les dynamic routes
 
 CHANGELOG 18/7 => connection create a community
 - a faire  : composants de la communauté en question ( ilot pour add une description , = seulement le createur peut faire ça, un header et la section input create a post dans cette commu)
+
+CHANGELOG 24/07 +> verifier si la commu existe avant d'afficher du contenu
