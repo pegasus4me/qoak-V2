@@ -35,7 +35,19 @@ export async function POST (req : Request) {
                 name : subqoakName
             }
         })
-        return NextResponse.json({statut : 200, msg : save})
+
+        const save_user = await prisma.user.update({
+            where : {
+                id : id,
+            },
+           data : {
+            createdSubreddits : {
+                set : subqoakName,
+            }
+           }
+        })
+        console.log("save", save_user)
+        return NextResponse.json({statut : 200, msg : save, user : save_user})
     } catch (error : any) {
         return error
     }

@@ -14,13 +14,17 @@ export default function Header() {
   const [clicked, setClicked] = useState<boolean>(false);
   const [user, setUser] = useState<any>([]);
   const { data: session, status } = useSession();
+
   useEffect(() => {
     fetch();
   }, [session]);
+
   const fetch = async () => {
     const res = await userInfos(session?.user?.email as string);
     setUser(res?.data.find_user);
   };
+
+  console.log('bbobobobob',user)
   return (
     <header className="border bg-white p-2">
       <div className="max-w-[90%] m-auto flex justify-between items-center">

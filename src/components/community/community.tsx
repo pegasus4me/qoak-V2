@@ -22,6 +22,7 @@ export default function Community() {
                 id: session?.user?.id as string,
                 subqoakName : communityName
             })
+            console.log('communité crée', res)
             if(res.status === 200)  {
                 toast(`${communityName} successfully created!`)
                 router.push(`/community/${communityName}`)
