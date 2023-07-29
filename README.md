@@ -31,3 +31,5 @@ finalité enregister une creation et un rejoin sur la bdd
 
 prochaine etape -----
 creation de post sur chaque communité
+
+CHANGELOG 29 +> comprendr eporquoi mes relations ne s'affichent pas sur mes retours de données

@@ -28,7 +28,7 @@ export async function POST (req : Request) {
         })
         if(check) return NextResponse.json({msg : "community already exist"})
         
-        // add new community tothe db 
+        // add new community to the db 
         const save = await prisma.subreddit.create({
             data : {
                 creatorId : id,
@@ -41,14 +41,16 @@ export async function POST (req : Request) {
                 id : id,
             },
            data : {
-            createdSubreddits : {
-                set : subqoakName,
-            }
+
+                createdSubreddits : {
+                    set : save,
+                }
            }
         })
-        console.log("save", save_user)
+        
         return NextResponse.json({statut : 200, msg : save, user : save_user})
     } catch (error : any) {
+        console.log('erreur zebi', error)
         return error
     }
 }
