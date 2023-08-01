@@ -33,3 +33,6 @@ prochaine etape -----
 creation de post sur chaque communité
 
 CHANGELOG 29 +> comprendr eporquoi mes relations ne s'affichent pas sur mes retours de données
+
+CHANGELOG 01/08 +> ajout createsubredit + join // a FAIRE crer un autre compte et tester si ça marche 
+=> passer au post + faire front button join 

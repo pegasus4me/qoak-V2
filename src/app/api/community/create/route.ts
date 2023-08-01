@@ -45,10 +45,13 @@ export async function POST (req : Request) {
                 createdSubreddits : {
                     set : save,
                 }
-           }
+           },
+           include: {
+            createdSubreddits: true, // Inclure les sous-reddits créés dans la réponse
+          },
         })
         
-        return NextResponse.json({statut : 200, msg : save, user : save_user})
+        return NextResponse.json({statut : 200, msg : save_user})
     } catch (error : any) {
         console.log('erreur zebi', error)
         return error
