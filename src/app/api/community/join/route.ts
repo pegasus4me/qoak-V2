@@ -28,19 +28,18 @@ export async function POST(req : Request) {
             },
         })
         if(check) {
-             check.createdSubreddits.map((data)=> {
+             check.createdSubreddits.map(async(data)=> {
                 if(data.name === commu) {
-                    console.log('nom deja existant')
                     return NextResponse.json({msg : "you are the creator of the community!"})
                 } else {
                     const join_commu = await prisma.user.update({
                         data : {
                             subscriptions : {
-                                set : commu,
+                                set : {name : commu},
                             }
                        },
                        include: {
-                        subscriptions: true, // Inclure les sous-reddits créés dans la réponse
+                        subscriptions: true,
                       },
                     })
                     return NextResponse.json({msg : 'community joined', code : join_commu})
