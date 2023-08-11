@@ -1,9 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
-// route trigger dans la dynamic URL
-// le user clique sur join la commu et ça ajoute le id + le nom de la communité join 
-// dans la reponse dans le header
+
 type Community = {
     commu : string, 
     id : string,
@@ -16,26 +14,50 @@ export async function POST(req : Request) {
     }
    
     try {
-        // recuperer le nom de la communité ou id + id de l'user qui a cliqué ()
         const {commu, id}:Omit<Community, "commuId">  = await req.json()
-
+        
         const check = await prisma.user.findFirst({
             where : {
                 id : id,
             },
             include: {
-                createdSubreddits: true, // Inclure les sous-reddits créés dans la réponse
+                createdSubreddits: true,
             },
         })
         if(check) {
-             check.createdSubreddits.map(async(data)=> {
-                if(data.name === commu) {
-                    return NextResponse.json({msg : "you are the creator of the community!"})
-                } else {
+            if(check.createdSubreddits.length !== 0) {
+                check.createdSubreddits.map(async(data)=> {
+                    if(data.name === commu) {
+                        return NextResponse.json({msg : "you are the creator of the community!"})
+                    }
+                })
+            }
+                // find subreddit concerned 
+                    const findSub = await prisma.subreddit.findFirst({
+                        where : {
+                            name : commu
+                        }
+                    });
+                // create a subscription
+                    const create = await prisma.subscription.create({
+                        data : {
+                            user : {
+                                set : check
+                            },
+                            subreddit : {
+                                set : findSub
+                            }
+                        }
+                    });
+                    
+                    // update user body subscriptions
                     const join_commu = await prisma.user.update({
+                        where : {
+                            id : id,
+                        },
                         data : {
                             subscriptions : {
-                                set : {name : commu},
+                                set : create
                             }
                        },
                        include: {
@@ -44,11 +66,8 @@ export async function POST(req : Request) {
                     })
                     return NextResponse.json({msg : 'community joined', code : join_commu})
 
-                }
-            })
         }
-
    } catch (error: any) {
-    console.log('erreur join community', error)
+        return NextResponse.json({msg : error})
    }
 }

@@ -40,6 +40,10 @@ CHANGELOG 01/08 +> ajout createsubredit + join // a FAIRE crer un autre compte e
 add react toast
 
 CHANGELOG +> 8/8 > 
-1 - regler connect entre la communité creé et rejointe par id 
 2 - regler ajout autrescommunautés avec ...
 3- tester route join avec un autre compte
+
+CHANGELOG => 
+Subscriptions a voir
+
+REGLER UNDEFINDED ROUTE JOIN

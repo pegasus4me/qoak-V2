@@ -46,15 +46,18 @@ export async function POST (req : Request) {
         })
         // creer une subscription au subreddit
         const subscription_ = await prisma.subscription.create({
+            
             data : {
                 user : user_,
                 subreddit : {
                     connect : {
-                        id : save.id
+                        subredditId : save.id
                     }
                 }
             },
         })
+
+        console.log('=>', subscription_)
 
         // update le statut de notre utilisateurt avec les nouvelles donnes 
         const save_user = await prisma.user.update({
@@ -66,9 +69,9 @@ export async function POST (req : Request) {
                 createdSubreddits : {
                     set : save,
                 },
-                subscriptions : {
-                   set : subscription_
-                }
+                // subscriptions : {
+                //    set : subscription_
+                // }
             },
             include: {
             createdSubreddits: true, 
