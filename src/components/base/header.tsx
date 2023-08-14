@@ -21,11 +21,10 @@ export default function Header() {
 
   const fetch = async () => {
     const res = await userInfos(session?.user?.email as string);
-    console.log('infos',res)
+    console.log('infDos',res)
     setUser(res?.data.find_user);
   };
 
-  console.log('bnobofgo',user)
   return (
     <header className="border bg-white p-2">
       <div className="max-w-[90%] m-auto flex justify-between items-center">

@@ -32,7 +32,7 @@ export default function Community() {
         } catch (error : any) {
             console.error('erreur community', error)
         }
-    },[session, communityName])
+    },[communityName, session?.user?.id, router])
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-20">
