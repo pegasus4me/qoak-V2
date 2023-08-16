@@ -44,7 +44,7 @@ export async function POST(req: Request) {
       //  check if the user is already a subscriber of this community
       if (check.subscriptions.length !== 0) {
         const alreadyIn = check.subscriptions.some(subs => subs.subredditId === findSub?.id);
-        if(alreadyIn) throw new Error('deja abboné');
+        if(alreadyIn) throw new Error('deja abboné')
       }
       // create a subscription
       const create = await prisma.subscription.create({
@@ -69,7 +69,7 @@ export async function POST(req: Request) {
         },
         data: {
           subscriptions: {
-            connect: { // ou set
+            connect: { 
                 id :create.id
             },
           },

@@ -15,6 +15,10 @@ const Header:FC<Tools>  = ({community})=> {
     const[data, setData] = useState<any>()
     const [joined, setJoined] = useState<Boolean>(false)
 
+    useEffect(()=> {
+        // isFollowing()
+    },[session, data])
+    
     const join = async() => {
         try {
             
@@ -22,13 +26,23 @@ const Header:FC<Tools>  = ({community})=> {
                 id: session?.user?.id as string,
                 commu : community as string
             })
-            if(data.status === 200) {
-                setData(data.data.user)
-                setJoined(true)
-            }
-
+            setData(data)
+            // set join simple avec 200
         } catch (error : any) {
             console.error('erreur', error)
+        }
+    }
+    const isFollowing = async() => {
+        try {
+            const subsriber = await axios.get('/api/community/joined',{
+                params : {
+                    id : session?.user?.id as string,
+                    commu : community
+                } 
+            })
+            console.log(subsriber)
+        } catch (error : any) {
+            console.log(error)
         }
     }
     return (
