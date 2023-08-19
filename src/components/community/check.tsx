@@ -18,7 +18,7 @@ const Check:FC<check>  = ({verify}) => {
         verifyParams(verify);
     },[verify])
 
-    const verifyParams = async(url) => {
+    const verifyParams = async(url: string) => {
         try {
             let a = await axios.get("/api/community/verify");
             let arr = a.data.msg

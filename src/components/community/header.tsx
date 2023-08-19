@@ -3,6 +3,8 @@ import react,{useState, useEffect} from 'react'
 import { FC } from 'react'
 import { useSession } from "next-auth/react";
 import axios, { AxiosResponse } from 'axios'
+import { subs } from '../../../lib/actions/subs';
+
 interface Tools {
     community : string,
 }
@@ -16,8 +18,8 @@ const Header:FC<Tools>  = ({community})=> {
     const [joined, setJoined] = useState<Boolean>(false)
 
     useEffect(()=> {
-        // isFollowing()
-    },[session, data])
+         fetch()
+    },[session])
     
     const join = async() => {
         try {
@@ -32,19 +34,18 @@ const Header:FC<Tools>  = ({community})=> {
             console.error('erreur', error)
         }
     }
-    const isFollowing = async() => {
+    const fetch = async() => {
         try {
-            const subsriber = await axios.get('/api/community/joined',{
-                params : {
-                    id : session?.user?.id as string,
-                    commu : community
-                } 
-            })
-            console.log(subsriber)
+            let checkIfUserIsFollowing = await subs(session?.user?.id, community);
+            console.log('response =>' , checkIfUserIsFollowing?.data.code)
+            if(checkIfUserIsFollowing?.data.code === true) {
+                setJoined(true)
+            }
         } catch (error : any) {
             console.log(error)
         }
     }
+    
     return (
         <div className=''>
             <div className='bg-white w-full p-2 flex justify-between mt-3 shadow-sm'>
@@ -53,7 +54,7 @@ const Header:FC<Tools>  = ({community})=> {
                 {!joined ? <button className="bg-slate-900 rounded-full text-white px-3 hover:bg-slate-800" 
                 onClick={join}
                 >Join</button> :
-                <button className="bg-slate-200 rounded-full text-black px-3 hover:bg-slate-800" 
+                <button className="bg-slate-200 rounded-full text-black px-3 " 
                 onClick={join}
                 >Joined</button>
                 }

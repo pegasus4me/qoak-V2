@@ -1,41 +1,41 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 import { NextResponse } from "next/server";
-import { useRouter } from "next/router";
+import { parse, UrlWithParsedQuery } from "url";
 type Id = {
   id: string;
   community: string;
 };
 export async function GET(req: Request) {
-
-   
   try {
+    const ParseURL: UrlWithParsedQuery = parse(req.url, true);
+    const { query } = ParseURL;
+    const { name, id } = query;
 
-
-    // => CORRIGER CE PROBLEME
-    const { id, community }: { id: string; community: string } = req.query; // Utilisez req.query pour obtenir les paramètres
-   
-    
     const sub = await prisma.subreddit.findFirst({
       where: {
-        name: community,
+        name: name as string,
       },
     });
-
     const findUser = await prisma.user.findFirst({
       where: {
-        id: id,
+        id: id as string,
       },
       include: {
         subscriptions: true,
       },
     });
-    if (findUser) {
-      const check: boolean = findUser.subscriptions.some(
+    console.log('sosos=>',findUser?.subscriptions);
+
+    if (findUser?.subscriptions.length !== 0) {
+      const check: boolean | undefined = findUser?.subscriptions.some(
         (data) => data.subredditId === sub?.id
       );
-      if (check) NextResponse.json({ code: check, msg: "TRUE" });
-      else NextResponse.json({ code: check, msg: "FALSE" });
+      if (check) {
+        return NextResponse.json({ code: check, msg: "TRUE" });
+      } else {
+        return NextResponse.json({ code: check, msg: "FALSE" });
+      } 
     } else {
       throw new Error("not found");
     }

@@ -14,10 +14,8 @@ export default function Community() {
     const [alert, setAlert] = useState<boolean>(false)
     const [checked ,setChecked] = useState<boolean>(false)
     const router = useRouter()
-    console.log('session =>',session)
     const onSubmit = useCallback(async() => {
         if(communityName === "") setAlert(true)
-        // if(!checked) throw new Error('not clicked')
         try {
             let res:AxiosResponse<any, any>  = await axios.post('/api/community/create', {
                 id: session?.user?.id as string,

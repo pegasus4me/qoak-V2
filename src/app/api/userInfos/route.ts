@@ -7,7 +7,6 @@ const prisma = new PrismaClient()
 
 export async function GET(request : Request){
     try {
-        
         const parseUrl: UrlWithParsedQuery = parse(request.url, true);
         const { query } = parseUrl;
         const { email } = query;
