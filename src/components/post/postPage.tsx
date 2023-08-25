@@ -1,22 +1,23 @@
 "use client";
 import { FC } from "react";
-import React from "react";
+import React,{useEffect} from "react";
 import { BsMagic } from "react-icons/bs";
 import Conditions from "./conditions";
 import Editor from "./editor";
 import Link from "next/link";
-import { Posts } from "../../../lib/actions/post";
 
 const PostPage: FC<{commuinyName : string}> = ({commuinyName}) => {
    
     return (
     <div className="">
         <div className="p-1">
-            <Link href="/" className="text-slate-300">home</Link>
+            <Link href={`/community/${commuinyName}`} className="text-black text-sm">go back</Link>
             <div className="flex items-center gap-1 text-xl mt-3">
             <h2>Create a post</h2>
             <BsMagic/>
             </div>
+
+            <h3>q/{commuinyName}</h3>
         </div>
 
       <div className="flex gap-4 mt-10">

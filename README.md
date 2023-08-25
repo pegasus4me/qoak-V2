@@ -57,3 +57,14 @@ FIXER BUG JOIN DES SUBREDDIT SET OU CONNECT , IL FAUT QUE JE PUISSE REJOINDRE DE
 => add si le user est pas abbo a la commu ne pas avoir les droits de emettre un post
 
 :: ilot info generales sur la communauté a droite
+
+=> 25/08 : finir la page post = {
+    faire la date de fab du post, 
+    nom,
+    nom commu,
+    title 
+    contenu : envever tags,
+}
+{
+    chercher les post en function de la communauté et loop dessous + infinite scroll aussi 
+}
