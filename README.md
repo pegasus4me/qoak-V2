@@ -51,3 +51,9 @@ FIXER BUG JOIN DES SUBREDDIT SET OU CONNECT , IL FAUT QUE JE PUISSE REJOINDRE DE
 
 16/08
 +>> REGLER ROUTE GET CHECK SI IL FOLLOW 
+
+
+19/08 => page post add lib pour edit text + ajouter des photos + save tout ça a la bdd avec le lien de l'user + le subreddit 
+=> add si le user est pas abbo a la commu ne pas avoir les droits de emettre un post
+
+:: ilot info generales sur la communauté a droite

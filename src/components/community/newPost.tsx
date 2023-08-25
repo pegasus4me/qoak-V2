@@ -9,6 +9,7 @@ const NewPost:FC<{name : string}> = ({ name }) => {
     const router:AppRouterInstance = useRouter()
     const redirect = () => {
        router.push(`/community/${name}/post`)
+
     }
     
     return <div className="border border-slate-300 max-w-[40%] p-1 bg-white focus:outline-none rounded-sm flex justify-around items-center">

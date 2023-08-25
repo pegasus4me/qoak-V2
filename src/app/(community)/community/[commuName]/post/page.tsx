@@ -1,9 +1,11 @@
 import React from 'react'
 import PostPage from '@/components/post/postPage'
-const post = () => {
+import { PropsParams } from '../page';
+
+const Post = ({params}:PropsParams) => {
     return <div>
-        <PostPage/>
+        <PostPage commuinyName={params.commuName}/>
     </div>
 }
 
-export default post
+export default Post
