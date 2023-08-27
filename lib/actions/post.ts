@@ -8,10 +8,26 @@ interface Strucuture {
 export class Posts {
     async getAllPosts() {
         try {
-            const res = await axios.get('/api/posts/findAll');
+            const res:AxiosResponse = await axios.get('/api/posts/findAll');
             return res
         } catch (error: any) {
             return error
         }
     }
+
+    async getPostbyPostId(id : string){
+        try {
+            const res:AxiosResponse = await axios.get('/api/posts/findOne',{
+                params : {
+                    id
+                }
+            })
+            return res
+        } catch (error :any) {
+            return error
+        }
+    }
+
+    async getAllPostsByUserId(){}
+    async getAllPostsByCommunityId(){}
 }
