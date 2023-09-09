@@ -5,22 +5,24 @@ interface Params {
   params: {
     url: string;
     postid: string;
-    commuName : string
+    commuName: string;
   };
 }
 
-const PostPage = ({params}:Params) => {
-    console.log('dodod',params)
-  return <div>
+const PostPage = ({ params }: Params) => {
+  return (
     <div>
-        <Link href={`/community/${params.commuName}`} className='text-sm'>go back</Link>
+      <div>
+        <Link href={`/community/${params.commuName}`} className="text-sm">
+          go back
+        </Link>
+      </div>
+      
+      <div>
+        <Content id={params.postid} commuName={params.commuName} />
+      </div>
     </div>
-    <div>
-    </div>
-    <div>
-        <Content id={params.postid} commuName={params.commuName}/>
-    </div>
-  </div>;
+  );
 };
 
 export default PostPage;

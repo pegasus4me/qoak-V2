@@ -1,26 +1,29 @@
-'use client'
-import { FC } from "react"
-import React from 'react'
+"use client";
+import { FC } from "react";
+import React from "react";
 import { BsMagic } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
-const NewPost:FC<{name : string}> = ({ name }) => {
-    
-    const router:AppRouterInstance = useRouter()
-    const redirect = () => {
-       router.push(`/community/${name}/post`)
+const NewPost: FC<{ name: string }> = ({ name }) => {
+  const router: AppRouterInstance = useRouter();
 
-    }
-    
-    return <div className="border border-slate-300 max-w-[40%] p-1 bg-white focus:outline-none rounded-sm flex justify-around items-center">
-        <input type="text" className="hover:outline-1 bg-transparent p-1" 
+  const redirect = () => {
+    router.push(`/community/${name}/post`);
+  };
+
+  return (
+    <div className="border border-slate-300 max-w-[400px] p-1 bg-white rounded-sm flex justify-around items-center">
+      <input
+        type="text"
+        className="hover:outline-1 bg-transparent p-1 focus:outline-none"
         placeholder="create a post"
-        onChange={()=> redirect()}
-        />
-        <div>
-            <BsMagic className="text-md"/>
-        </div>
+        onChange={() => redirect()}
+      />
+      <div>
+        <BsMagic className="text-md" />
+      </div>
     </div>
-}
+  );
+};
 
-export default NewPost
+export default NewPost;

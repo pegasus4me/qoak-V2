@@ -34,10 +34,10 @@ const Header:FC<Tools>  = ({community})=> {
             console.error('erreur', error)
         }
     }
+    
     const fetch = async() => {
         try {
             let checkIfUserIsFollowing = await subs(session?.user?.id, community);
-            console.log('response =>' , checkIfUserIsFollowing?.data.code)
             if(checkIfUserIsFollowing?.data.code === true) {
                 setJoined(true)
             }
@@ -55,7 +55,7 @@ const Header:FC<Tools>  = ({community})=> {
                 onClick={join}
                 >Join</button> :
                 <button className="bg-slate-200 rounded-full text-black px-3 " 
-                onClick={join}
+                onClick={() => console.log("unjoin")} // je dois enlever le join quand il est joined
                 >Joined</button>
                 }
                 

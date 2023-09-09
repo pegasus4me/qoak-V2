@@ -19,9 +19,10 @@ export default function Header() {
     fetch();
   }, [session]);
 
+  console.log(user?.image)
   const fetch = async () => {
     const res = await userInfos(session?.user?.email as string);
-    console.log('infDos',res)
+    console.log('user infos',res);
     setUser(res?.data.find_user);
   };
 
@@ -58,8 +59,7 @@ export default function Header() {
               <Avatar.Image
                 className="h-full w-full rounded-[inherit] object-cover"
                 src={
-                  user?.image !== null
-                    ? (user?.image as string)
+                  user?.image !== undefined || null ? (user?.image as string)
                     : "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80"
                 }
                 alt="Colm Tuite"

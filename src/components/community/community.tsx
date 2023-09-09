@@ -14,6 +14,7 @@ export default function Community() {
     const [alert, setAlert] = useState<boolean>(false)
     const [checked ,setChecked] = useState<boolean>(false)
     const router = useRouter()
+    
     const onSubmit = useCallback(async() => {
         if(communityName === "") setAlert(true)
         try {
@@ -21,7 +22,7 @@ export default function Community() {
                 id: session?.user?.id as string,
                 subqoakName : communityName
             })
-            console.log('communité crée', res)
+            
             if(res.status === 200)  {
                 toast(`${communityName} successfully created!`)
                 router.push(`/community/${communityName}`)
@@ -57,6 +58,7 @@ export default function Community() {
                 <input type="checkbox" name="validate" id="" onClick={() => setChecked(true)} />
                 <p className="text-black text-xs">I have understod the rules of <span className="text-blue-500 font-medium">community</span></p>
         </div>
+
         <div className=" flex justify-end gap-3 mt-52">
             <button className="border bg-transparent text-black font-light p-2 rounded-md text-center text-xs"
             onClick={() => {}}
@@ -72,5 +74,3 @@ export default function Community() {
   );
 }
 
-
-// le nom de la commu sera le leaf qui donne acces a l'autre page

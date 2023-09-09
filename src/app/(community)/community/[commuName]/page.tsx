@@ -4,7 +4,7 @@ import Header from "@/components/community/header";
 import NewPost from "@/components/community/newPost";
 import Check from "@/components/community/check";
 import Link from "next/link";
-
+import PostStructure from "@/components/post/post.structure";
 export interface PropsParams {
   params: {
     url: string;
@@ -13,8 +13,6 @@ export interface PropsParams {
 }
 
 const Community: FC<PropsParams> = ({ params }) => {
-
-    console.log('url params=>',params)
   return (
     <div>
       <div>
@@ -36,6 +34,7 @@ const Community: FC<PropsParams> = ({ params }) => {
 
       <div>
         {/* posts dans la communauté (seulement le titre + debut texte ) + upvotes component */}
+         {/* <PostStructure/> */}
       </div>
     </div>
   );

@@ -68,3 +68,7 @@ FIXER BUG JOIN DES SUBREDDIT SET OU CONNECT , IL FAUT QUE JE PUISSE REJOINDRE DE
 {
     chercher les post en function de la communauté et loop dessous + infinite scroll aussi 
 }
+
+
+
+09/09 mettre correctement a jours meme apres re render les votes 

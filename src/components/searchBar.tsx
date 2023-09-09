@@ -13,3 +13,9 @@ export default function Search() {
     </div>
   );
 }
+
+/**
+ * rechercher par keywork = recuper toutes les commuanutés et 
+ * des que l'utilisateur ecrtit une lettre j'affiche les commu qui comments 
+ * par cette lettre la 
+ */

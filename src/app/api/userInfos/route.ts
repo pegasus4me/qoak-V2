@@ -25,7 +25,7 @@ export async function GET(request : Request){
         return NextResponse.json({user : find_user})
     
     } catch (error: any) {
-        console.log(error)
+        console.log('ddd',error)
         return NextResponse.json({statut : "error", error : error})
     }
 }

@@ -25,7 +25,6 @@ export async function GET(req: Request) {
         subscriptions: true,
       },
     });
-    console.log('sosos=>',findUser?.subscriptions);
 
     if (findUser?.subscriptions.length !== 0) {
       const check: boolean | undefined = findUser?.subscriptions.some(

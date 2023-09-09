@@ -7,28 +7,35 @@ import { useSession } from "next-auth/react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+
 const Editor = ({ name }: { name: string }) => {
+  
   const router = useRouter();
   const { data: session, status } = useSession();
   const [content, setContent] = useState<string>("");
   const [title, setTitle] = useState<string>("");
+  
+  
   const send = useCallback(async () => {
     try {
       if (title === "" || content === "") throw new Error("empty values");
+      
       const res = await axios.post("/api/posts/create", {
         title: title,
         content: content,
         user: session?.user?.id as string,
         name: name,
       });
-        let postId:string = res.data.response.id;
+      
+      console.log("post creaded! =", res.data)
+      let postId: string = res.data.response.id;
+      
       if (res.status === 200) {
         toast.success("post succesfully created");
         router.push(`/community/${name}/post/${postId}`);
       } else {
         toast.error("something went wrong");
       }
-      
     } catch (error: any) {
       console.error("error =>", error);
     }

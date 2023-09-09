@@ -28,13 +28,10 @@ const handler = NextAuth({
                         email: credentials?.email as string,
                     }
                 })
-                console.log(process.env.NEXT_AUTH_SECRET)
-
                 if (!user || !user.hashedPassword) throw new Error("Email does not exist");
                 
                 const checkPaswword = await compare(credentials?.password, user.hashedPassword)
                 if (!checkPaswword) throw new Error("password not correct...")
-                console.log(checkPaswword)
                 return user;
 
             }
