@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Feed() {
   return (
-    <div className="border max-w-[80%] min-w-[80%] bg-white p-2">
+    <div className="border max-w-[700px] min-w-[300px] bg-white p-2">
       <div className="mt-9">
         <h2>Home</h2>
         <p className="text-xs text-gray-400 mb-6">

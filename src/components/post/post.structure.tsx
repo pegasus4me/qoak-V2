@@ -1,14 +1,33 @@
+"use client"
+import { useRouter } from "next/navigation"
+
+type Post ={
+    creator : string,
+    title : string, 
+    content : string , 
+    date : Date,
+    postId : string,
+    subreddit : string
+}
 
 
-const PostStructure = () => {
+const PostStructure = ({creator, date, content, title, postId, subreddit} : Post) => {
+    const router = useRouter()
     return (
-        <div className="max-w-[900px] border min-h-[200px] bg-white rounded-sm p-6">
-            <div>{}</div> // creator of the post 
+        <div className="max-w-[900px] min-h-[200px] bg-white rounded-md p-6 mt-6 shadow-sm"
+         onClick={() => router.push(`/community/${subreddit}/${postId}`)}
+        >
+            <div>    
+            <p>created by {creator} at {date.toString()}</p>
+            </div>
             <div>
-                <h2 className="text-lg font-light ">post proto</h2>
+                <h2 className="text-lg font-light ">{title}</h2>
             </div>
             <div className="mt-5">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta facere iure illo exercitationem, eveniet aperiam pariatur accusantium inventore atque incidunt hic vero officia animi, magni, fuga quia? Nihil, doloremque amet!</p>
+                <div
+                className="text-md"
+                dangerouslySetInnerHTML={{ __html: content }}
+            />
             </div>
             {/* COMMENTS */}
         </div>

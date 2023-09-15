@@ -72,3 +72,5 @@ FIXER BUG JOIN DES SUBREDDIT SET OU CONNECT , IL FAUT QUE JE PUISSE REJOINDRE DE
 
 
 09/09 mettre correctement a jours meme apres re render les votes 
+
+15/09 === terminer redirect sur chaque post avec le subreddit ID + faire la meme chose pour la page user avec seulement ses post 

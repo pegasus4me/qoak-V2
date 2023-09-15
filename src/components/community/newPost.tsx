@@ -22,7 +22,7 @@ const NewPost: FC<{ name: string }> = ({ name }) => {
       <div>
         <BsMagic className="text-md" />
       </div>
-    </div>
+    </div
   );
 };
 
