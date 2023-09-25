@@ -16,7 +16,6 @@ const PostPage: FC<{commuinyName : string}> = ({commuinyName}) => {
             <h2>Create a post</h2>
             <BsMagic/>
             </div>
-
             <h3>q/{commuinyName}</h3>
         </div>
 
